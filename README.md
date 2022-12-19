@@ -11,6 +11,6 @@ $ npm i
 ## Running
 
 ```
-npm start
+node index.js
 ```
 
