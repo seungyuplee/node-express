@@ -23,6 +23,7 @@ const port = 3000
 app.use(cors())
 
 app.get('/', (req, res) => {
+  console.log('connect')
   res.send('Hello World!')
 })
 
