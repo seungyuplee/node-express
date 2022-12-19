@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Node Js 공부</title>
+</head>
+<body>
+    <h1 id="nowTimes">1</h1>
+    <h1 id="sound">1</h1>
+    <input id="name" type="text" value="dog">
+    <button onclick="getSound()">API 요청</button>
+
+    <script>
+        function getSound() {
+            const name = document.getElementById('name').value
+            //document.getElementById('check').value = "1234"
+            console.log("getSound()" + " " + name)
+
+            fetch(`http://localhost:3000/sound/${name}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                console.log(data.sound)
+                document.getElementById('sound').innerHTML = data.sound
+            });
+        }
+
+        setInterval(realTimer, 1000);
+
+        function realTimer(time){
+            const nowDate = new Date();
+            const year = nowDate.getFullYear();
+            const month= nowDate.getMonth() + 1;
+            const date = nowDate.getDate();
+            const hour = nowDate.getHours();
+            const min = nowDate.getMinutes();
+            const sec = nowDate.getSeconds();
+
+            document.getElementById("nowTimes").innerHTML = 
+            year + "-" + addzero(month) + "-" + addzero(date) + "&nbsp;" + hour + ":" + addzero(min) + ":" + addzero(sec);
+        }
+
+         // 1자리수의 숫자인 경우 앞에 0을 붙여준다.
+        function addzero(num) {
+            if(num < 10) { num = "0" + num; }
+            return num;
+        }
+    </script>
+</body>
+</html>
